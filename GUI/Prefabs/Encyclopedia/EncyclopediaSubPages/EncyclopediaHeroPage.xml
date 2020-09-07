@@ -49,6 +49,7 @@
                             </EncyclopediaHeroTraitVisualWidget>
                           </ItemTemplate>
                         </ListPanel>
+
                       </Children>
                     </ListPanel>
 
@@ -75,6 +76,13 @@
                     </ListPanel>
 
                     <Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="2" HorizontalAlignment="Right" Sprite="Encyclopedia\divider_vertical" />
+
+                    <!--Bookmark Button-->
+                    <ButtonWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="50" SuggestedHeight="50" HorizontalAlignment="Left" VerticalAlignment="Top" MarginLeft="5" MarginTop="5" Brush="Encyclopedia.Bookmark.Button" Command.Click="ExecuteSwitchBookmarkedState" IsSelected="@IsBookmarked">
+                      <Children>
+                        <HintWidget DataSource="{BookmarkHint}" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Command.HoverBegin="ExecuteBeginHint" Command.HoverEnd="ExecuteEndHint"/>
+                      </Children>
+                    </ButtonWidget>
 
                   </Children>
                 </Widget>
@@ -148,7 +156,7 @@
 
                                                 <!--Value Label-->
                                                 <AutoHideRichTextWidget HeightSizePolicy ="CoverChildren" WidthSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Encyclopedia.Stat.ValueText" Text="@Value" PositionYOffset="2" />
-
+												
                                               </Children>
                                             </ListPanel>
 

@@ -355,3 +355,5 @@ MigrationBackup/
 .ionide/
 /DiplomacyFixes.csproj.old
 /DiplomacyFixes.sln
+*.user
+*.csproj

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
@@ -14,7 +15,12 @@ namespace DiplomacyFixes.DiplomaticAction.Alliance
 
         protected override void ApplyInternal(Kingdom proposingKingdom, Kingdom otherKingdom, float? customDurationInDays)
         {
-            FactionManager.DeclareAlliance(proposingKingdom, otherKingdom);
+            IFaction faction1 = proposingKingdom, faction2 = otherKingdom;
+            if (faction1 != faction2 && !faction1.IsBanditFaction && !faction2.IsBanditFaction)
+            {
+                typeof(FactionManager).GetMethod("SetStance", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { faction1, faction2, 2 });
+                //FactionManager.SetStance(faction1, faction2, StanceType.Alliance);
+            }
             Events.Instance.OnAllianceFormed(new AllianceEvent(proposingKingdom, otherKingdom));
         }
 
